@@ -6,7 +6,8 @@ import pandas as pd
 import warnings
 warnings.filterwarnings("ignore", category=UserWarning)
 
-app = Flask(__name__)
+application = Flask(__name__)
+app = application
 # Load the trained model
 model = pickle.load(open('MLmodel.pkl', 'rb'))
 scaler = pickle.load(open('scaler.pkl', 'rb'))
