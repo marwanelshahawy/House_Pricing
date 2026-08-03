@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Boston House Price Prediction</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+  <div class="sheet">
+
+    <!-- Left: elevation / drawing panel -->
+    <section class="elevation">
+      <div class="title-block">
+        <span class="eyebrow">Appraisal Model &middot; No. 02</span>
+        <h1>Boston House<br>Price Prediction</h1>
+        <p>Enter the thirteen tract measurements at right and the model will estimate a median home value, drafted straight from the data.</p>
+      </div>
+
+      <svg class="house-drawing" viewBox="0 0 320 200" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <!-- roof -->
+        <path d="M 40 100 L 160 30 L 280 100" />
+        <!-- walls -->
+        <path d="M 60 100 L 60 175 L 260 175 L 260 100" />
+        <!-- door -->
+        <path d="M 145 175 L 145 125 L 180 125 L 180 175" />
+        <!-- windows -->
+        <path d="M 85 120 L 85 150 L 115 150 L 115 120 Z M 85 135 L 115 135 M 100 120 L 100 150" class="accent" />
+        <path d="M 205 120 L 205 150 L 235 150 L 235 120 Z M 205 135 L 235 135 M 220 120 L 220 150" class="accent" />
+        <!-- dimension lines -->
+        <line x1="40" y1="190" x2="280" y2="190" />
+        <line x1="40" y1="184" x2="40" y2="196" />
+      </svg>
+
+      <div class="scale-note">
+        <span>SCALE 1&nbsp;:&nbsp;NTS</span>
+        <span>DATASET &mdash; BOSTON, MA</span>
+      </div>
+    </section>
+
+    <!-- Right: spec sheet / form panel -->
+    <section class="spec-sheet">
+      <div class="spec-header">
+        <h2>Tract Specification</h2>
+        <span>13 FIELDS</span>
+      </div>
+
+      <form action="{{ url_for('predict') }}" method="post" novalidate>
+
+        <div class="field">
+          <label><span class="code">CRIM</span><span class="desc">crime rate / capita</span></label>
+          <input type="text" inputmode="decimal" name="CRIM" placeholder="e.g. 0.00632" required>
+        </div>
+
+        <div class="field">
+          <label><span class="code">ZN</span><span class="desc">large-lot zoning %</span></label>
+          <input type="text" inputmode="decimal" name="ZN" placeholder="e.g. 18.0" required>
+        </div>
+
+        <div class="field">
+          <label><span class="code">INDUS</span><span class="desc">non-retail acres %</span></label>
+          <input type="text" inputmode="decimal" name="INDUS" placeholder="e.g. 2.31" required>
+        </div>
+
+        <div class="field">
+          <label><span class="code">CHAS</span><span class="desc">borders Charles River</span></label>
+          <input type="text" inputmode="decimal" name="CHAS" placeholder="0 or 1" required>
+        </div>
+
+        <div class="field">
+          <label><span class="code">NOX</span><span class="desc">nitric oxide conc.</span></label>
+          <input type="text" inputmode="decimal" name="NOX" placeholder="e.g. 0.538" required>
+        </div>
+
+        <div class="field">
+          <label><span class="code">RM</span><span class="desc">avg. rooms / dwelling</span></label>
+          <input type="text" inputmode="decimal" name="RM" placeholder="e.g. 6.575" required>
+        </div>
+
+        <div class="field">
+          <label><span class="code">AGE</span><span class="desc">built before 1940 %</span></label>
+          <input type="text" inputmode="decimal" name="AGE" placeholder="e.g. 65.2" required>
+        </div>
+
+        <div class="field">
+          <label><span class="code">DIS</span><span class="desc">dist. to job centers</span></label>
+          <input type="text" inputmode="decimal" name="DIS" placeholder="e.g. 4.09" required>
+        </div>
+
+        <div class="field">
+          <label><span class="code">RAD</span><span class="desc">highway access index</span></label>
+          <input type="text" inputmode="decimal" name="RAD" placeholder="e.g. 1" required>
+        </div>
+
+        <div class="field">
+          <label><span class="code">TAX</span><span class="desc">property tax rate</span></label>
+          <input type="text" inputmode="decimal" name="TAX" placeholder="e.g. 296" required>
+        </div>
+
+        <div class="field">
+          <label><span class="code">PTRATIO</span><span class="desc">pupil&ndash;teacher ratio</span></label>
+          <input type="text" inputmode="decimal" name="PTRATIO" placeholder="e.g. 15.3" required>
+        </div>
+
+        <div class="field">
+          <label><span class="code">B</span><span class="desc">historic demographic index</span></label>
+          <input type="text" inputmode="decimal" name="B" placeholder="e.g. 396.9" required>
+        </div>
+
+        <div class="field">
+          <label><span class="code">LSTAT</span><span class="desc">lower-status pop. %</span></label>
+          <input type="text" inputmode="decimal" name="LSTAT" placeholder="e.g. 4.98" required>
+        </div>
+
+        <div class="submit-row">
+          <button type="submit">Estimate value</button>
+          <span class="hint">Model: Linear Regression &middot; trained on the classic Boston housing set</span>
+        </div>
+
+        <div class="result">{{ prediction_text }}</div>
+
+      </form>
+    </section>
+
+  </div>
+
+</body>
+</html>
