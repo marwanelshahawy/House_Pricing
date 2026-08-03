@@ -88,7 +88,7 @@ House_Pricing/
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/<your-username>/House_Pricing.git
+   git clone https://github.com/marwanelshahawy/House_Pricing.git
    cd House_Pricing
    ```
 
@@ -111,9 +111,12 @@ House_Pricing/
    If you don't have a `requirements.txt` yet, create one with:
    ```
    flask
-   numpy
-   pandas
    scikit-learn==1.6.1
+   pandas
+   numpy
+   matplotlib
+   seaborn
+   gunicorn
    ```
    > ⚠️ Pin `scikit-learn` to the version used to train `MLmodel.pkl` / `scaler.pkl` to avoid `InconsistentVersionWarning` or prediction mismatches.
 
@@ -229,12 +232,6 @@ curl -X POST http://127.0.0.1:5000/predict_api \
 - [ ] Add a `requirements.txt` with pinned versions (see above)
 - [ ] Deploy to a cloud platform (Render, Railway, AWS, etc.)
 - [ ] Swap in a more robust model (e.g., Random Forest, Gradient Boosting) and compare performance
-
----
-
-## 📄 License
-
-This project is licensed under the [MIT License](LICENSE). Feel free to use, modify, and distribute it for learning or portfolio purposes.
 
 ---
 
