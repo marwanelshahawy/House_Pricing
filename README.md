@@ -11,6 +11,23 @@ A Flask web application that predicts median house prices in Boston using a trai
 
 ---
 
+## Live Demo
+ 
+🔗 **[http://housepricing-env.eba-6dmk8pq2.eu-north-1.elasticbeanstalk.com/](http://housepricing-env.eba-6dmk8pq2.eu-north-1.elasticbeanstalk.com/)**
+
+---
+
+## Deployment
+ 
+This project is deployed on **AWS**, using the following pipeline:
+ 
+- **AWS Elastic Beanstalk** — hosts and runs the Flask application
+- **AWS CodePipeline** — automates build and deployment whenever code is pushed
+- **AWS IAM** — manages permissions between CodePipeline and Elastic Beanstalk
+Every push to the connected repository automatically triggers a new deployment through CodePipeline, which builds and releases the updated app to the Elastic Beanstalk environment.
+
+---
+
 ## 📋 Table of Contents
 
 - [Overview](#-overview)
@@ -228,9 +245,7 @@ curl -X POST http://127.0.0.1:5000/predict_api \
 
 - [ ] Add input validation and user-friendly error messages
 - [ ] Add unit tests for `/predict` and `/predict_api`
-- [ ] Containerize with Docker for consistent deployment
 - [ ] Add a `requirements.txt` with pinned versions (see above)
-- [ ] Deploy to a cloud platform (Render, Railway, AWS, etc.)
 - [ ] Swap in a more robust model (e.g., Random Forest, Gradient Boosting) and compare performance
 
 ---
